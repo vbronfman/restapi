@@ -2,12 +2,14 @@ from flask import Flask, request
 from flask_restful import Resource, Api
 from sqlalchemy import create_engine
 from json import dumps
-from flask.ext.jsonpify import jsonify
+from flask_jsonpify import jsonify
 from flask_cors import CORS
+import json
 
 db_connect = create_engine('sqlite:///chinook.db')
 app = Flask(__name__)
 api = Api(app)
+
 
 CORS(app)
 
@@ -39,11 +41,10 @@ class Employees_Name_Delete(Resource):
 class Employees_Title_Update(Resource):
 	def post(self, employee_id):
 		conn = db_connect.connect()
-		newTitle = request.data
-		sql = "update employees set title=? where EmployeeId=?"
-		conn.execute(sql,(newTitle,employee_id))
-		
-	
+		j = request.get_json(force=True)
+		newTitle=j.get('title')
+		conn.execute("update employees set title=" + "'" + str(newTitle) + "'" + " where EmployeeId=%d" %int(employee_id))
+
 
 api.add_resource(Employees, '/employees') # Route_1
 api.add_resource(Tracks, '/tracks') # Route_2
@@ -53,4 +54,4 @@ api.add_resource(Employees_Title_Update,'/employees_update/<employee_id>') #atua
 
 
 if __name__ == '__main__':
-     app.run(host='0.0.0.0',port='5002')
+     app.run(host='192.168.0.10', port=5000)
