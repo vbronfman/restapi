@@ -12,6 +12,6 @@ To execute this script you should export enviroments below:
 export FLASK_APP=your flas script
 export FLASK_ENV=development or production
 
-To run:  flask --host=your hostname/ip --port:your target port
+To run:  flask run --host 0.0.0.0 --port 5000
 
 This is a good resource to provide REST api for purposes in a reduced scope.
