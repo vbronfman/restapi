@@ -54,4 +54,4 @@ api.add_resource(Employees_Title_Update,'/employees_update/<employee_id>') #atua
 
 
 if __name__ == '__main__':
-     app.run(host='localhost', port=5000)
+     app.run(host='0.0.0.0', port=5000)
