@@ -3,3 +3,4 @@ flask_restful
 sqlalchemy
 flask_jsonpify
 flask_cors
+testpy
