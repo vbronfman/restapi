@@ -4,3 +4,4 @@ sqlalchemy
 flask_jsonpify
 flask_cors
 pytest
+requests
